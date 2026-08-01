@@ -7,12 +7,9 @@ An interactive **Power BI** dashboard built on the classic *Sample Superstore* d
 ---
 ## 🎥 Demo Video
 
-📹 **Watch the dashboard walkthrough here:**
+📥 **Download or watch the demo:**
 
-<video controls src="dashboard.mp4" title="Title"></video>
-
-> **Note:** Set your Google Drive file permission to **"Anyone with the link" → "Viewer"**.
-
+[▶️ Dashboard Demo Video](./dashboard.mp4)
 
 🎥 Demo Video
 
