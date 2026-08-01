@@ -5,20 +5,14 @@ An interactive **Power BI** dashboard built on the classic *Sample Superstore* d
 ![Dashboard Preview](dashboard-preview.png)
 
 ---
-
 ## 🎥 Demo Video
 
-<!--
-  GitHub does not allow embedding real <video> players in a README that autoplay,
-  so the usual approach is a clickable thumbnail that links to the video.
-  Steps to add your own demo:
-  1. Record a short screen capture of the dashboard (Loom, OBS, or Power BI's
-     built-in "Export > Video" if using Power BI Service).
-  2. Upload it to YouTube (unlisted works fine) or drop the .mp4 into this repo.
-  3. Replace VIDEO_ID / VIDEO_LINK / THUMBNAIL_LINK below.
--->
+📹 **Watch the dashboard walkthrough here:**
 
 <video controls src="dashboard.mp4" title="Title"></video>
+
+> **Note:** Set your Google Drive file permission to **"Anyone with the link" → "Viewer"**.
+
 
 🎥 Demo Video
 
