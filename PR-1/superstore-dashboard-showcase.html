@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Superstore Sales Dashboard - Power BI Project</title>
+<meta name="description" content="Interactive showcase of the Superstore Sales Dashboard built in Power BI: sales, profit, quantity and discount analysis across regions, categories and cities.">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{--primary:#6366f1;--primary-light:#818cf8;--accent:#f59e0b;--success:#10b981;--danger:#ef4444;--bg:#fafafa;--card-bg:#fff;--text:#1e293b;--text-light:#64748b;--border:#e2e8f0;--code-bg:#1e1e2e;--gradient-1:linear-gradient(135deg,#6366f1,#8b5cf6);--gradient-2:linear-gradient(135deg,#f59e0b,#f97316);--shadow-sm:0 1px 2px rgba(0,0,0,.05);--shadow-md:0 4px 6px -1px rgba(0,0,0,.1);--shadow-lg:0 10px 15px -3px rgba(0,0,0,.1);--radius:16px}
+  [data-theme=dark]{--bg:#0f172a;--card-bg:#1e293b;--text:#f1f5f9;--text-light:#94a3b8;--border:#334155;--code-bg:#0d1117}
+  html{scroll-behavior:smooth}body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-height:1.8;transition:.3s;overflow-x:hidden}
+  ::-webkit-scrollbar{width:8px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--primary-light);border-radius:4px}
+  .navbar{position:fixed;top:0;left:0;right:0;background:rgba(255,255,255,.82);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--border);z-index:1000;padding:0 2rem}[data-theme=dark] .navbar{background:rgba(15,23,42,.84)}
+  .nav-content{max-width:1200px;margin:auto;display:flex;justify-content:space-between;align-items:center;height:64px}.logo{font-size:1.2rem;font-weight:800;background:var(--gradient-1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;display:flex;align-items:center;gap:8px}.logo-icon{width:32px;height:32px;background:var(--gradient-1);border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:14px;-webkit-text-fill-color:#fff}.nav-controls{display:flex;gap:12px}.theme-toggle,.progress-btn{background:var(--card-bg);border:1px solid var(--border);color:var(--text);width:40px;height:40px;border-radius:12px;cursor:pointer;font-size:18px;transition:.3s}.theme-toggle:hover,.progress-btn:hover{background:var(--primary);color:#fff;border-color:var(--primary);transform:scale(1.05)}.progress-bar{position:fixed;top:64px;left:0;height:3px;width:0;background:var(--gradient-1);z-index:999}
+  .hero{padding:120px 2rem 50px;text-align:center;position:relative;overflow:hidden}.hero::before{content:"";position:absolute;inset:-50%;background:radial-gradient(circle at 50% 50%,rgba(99,102,241,.08),transparent 50%);animation:pulse-bg 8s ease-in-out infinite}@keyframes pulse-bg{50%{transform:scale(1.1);opacity:.65}}.hero-badge{display:inline-flex;padding:6px 16px;background:rgba(99,102,241,.1);border:1px solid rgba(99,102,241,.2);border-radius:100px;font-size:.85rem;font-weight:500;color:var(--primary);margin-bottom:24px;position:relative}.hero h1{font-size:clamp(2.2rem,6vw,3.6rem);font-weight:800;line-height:1.1;margin-bottom:16px;position:relative}.hero h1 span{background:var(--gradient-1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}.hero-subtitle{font-size:1.1rem;color:var(--text-light);max-width:760px;margin:0 auto 32px;position:relative}.hero-stats{display:flex;justify-content:center;gap:32px;flex-wrap:wrap;position:relative;margin-bottom:36px}.stat-number{font-size:1.75rem;font-weight:800;background:var(--gradient-1);-webkit-background-clip:text;-webkit-text-fill-color:transparent}.stat-label{font-size:.8rem;color:var(--text-light);text-transform:uppercase;letter-spacing:1px}
+  .hero-image-wrap{max-width:980px;margin:0 auto;position:relative}.hero-image-wrap img{width:100%;display:block;border-radius:18px;border:1px solid var(--border);box-shadow:var(--shadow-lg)}
+  .toc-container{max-width:860px;margin:50px auto 60px;padding:0 2rem}.toc{background:var(--card-bg);border-radius:var(--radius);border:1px solid var(--border);padding:32px;box-shadow:var(--shadow-md)}.toc h3{font-size:1.1rem;margin-bottom:20px}.toc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px}.toc-item{padding:10px 16px;border-radius:10px;display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--text);font-size:.9rem;transition:.2s}.toc-item:hover{background:rgba(99,102,241,.08);color:var(--primary);transform:translateX(4px)}.toc-num{width:28px;height:28px;background:rgba(99,102,241,.1);border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:600;font-size:.8rem;color:var(--primary);flex-shrink:0}
+  .content{max-width:860px;margin:auto;padding:0 2rem 60px}.section{margin-bottom:52px}.fade-in{opacity:0;transform:translateY(20px);transition:.6s}.fade-in.visible{opacity:1;transform:none}.section-header{display:flex;align-items:center;gap:12px;margin-bottom:24px;padding-bottom:12px;border-bottom:2px solid var(--border)}.section-icon{width:44px;height:44px;background:var(--gradient-1);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}.section-header h2{font-size:1.5rem}.section-header small{display:block;font-size:.75rem;color:var(--text-light);font-weight:400;text-transform:uppercase;letter-spacing:1px}
+  .card{background:var(--card-bg);border-radius:var(--radius);border:1px solid var(--border);padding:28px;margin-bottom:20px;box-shadow:var(--shadow-sm);transition:.3s}.card:hover{box-shadow:var(--shadow-md);transform:translateY(-2px)}.card h3{font-size:1.1rem;margin-bottom:12px}.card p,.card li{color:var(--text-light);font-size:.95rem}.card ul,.card ol{padding-left:20px;margin:12px 0}.card li{margin-bottom:8px}.info-box{border-radius:12px;padding:20px 24px;margin:16px 0;border-left:4px solid;font-size:.92rem}.info-box.note{background:rgba(99,102,241,.06);border-color:var(--primary)}.info-box.tip{background:rgba(16,185,129,.06);border-color:var(--success)}.info-box.warning{background:rgba(245,158,11,.06);border-color:var(--accent)}.info-box strong{display:block;margin-bottom:4px}
+  .comparison-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:16px 0}.three-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:16px 0}.comparison-card{background:var(--card-bg);border:1px solid var(--border);border-radius:12px;padding:20px}.comparison-card h4{font-size:.95rem;margin-bottom:10px}.comparison-card p{font-size:.9rem;color:var(--text-light)}.table-wrapper{overflow-x:auto;margin:16px 0;border-radius:12px;border:1px solid var(--border)}table{width:100%;border-collapse:collapse;font-size:.9rem}th{background:var(--primary);color:#fff;padding:12px 16px;text-align:left}td{padding:12px 16px;border-bottom:1px solid var(--border);color:var(--text-light)}tr:nth-child(even){background:rgba(99,102,241,.03)}
+  .example-card{background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin:20px 0}.example-header{background:var(--gradient-1);color:#fff;padding:14px 24px;font-weight:600}.example-header.non-tech{background:var(--gradient-2)}.example-body{padding:24px}.example-body p{color:var(--text-light);font-size:.93rem;margin-bottom:10px}.example-body img{width:100%;border-radius:12px;border:1px solid var(--border);margin-top:8px}
+  .steps{position:relative;padding-left:40px;margin:16px 0}.steps::before{content:"";position:absolute;left:15px;top:0;bottom:0;width:2px;background:var(--border)}.step{position:relative;margin-bottom:24px}.step-dot{position:absolute;left:-33px;top:4px;width:20px;height:20px;background:var(--gradient-1);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:.65rem;font-weight:700}.step h4{font-size:1rem}.step p{font-size:.9rem;color:var(--text-light)}
+  .tag{display:inline-flex;padding:4px 12px;border-radius:100px;font-size:.75rem;font-weight:500;margin:2px}.tag.purple{background:rgba(99,102,241,.1);color:var(--primary)}.tag.green{background:rgba(16,185,129,.1);color:var(--success)}.tag.orange{background:rgba(245,158,11,.1);color:var(--accent)}
+  .video-card{background:var(--code-bg);border-radius:var(--radius);overflow:hidden;position:relative;box-shadow:var(--shadow-lg);border:1px solid var(--border)}.video-card img{width:100%;display:block;opacity:.55}.video-play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:84px;height:84px;background:rgba(15,15,25,.55);border:2px solid #fff;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:.25s}.video-play:hover{transform:translate(-50%,-50%) scale(1.08);background:var(--primary)}.video-play::after{content:"";border-style:solid;border-width:16px 0 16px 26px;border-color:transparent transparent transparent #fff;margin-left:8px}.video-caption{position:absolute;bottom:0;left:0;right:0;padding:18px 24px;background:linear-gradient(0deg,rgba(0,0,0,.75),transparent);color:#fff;font-weight:600}
+  .gallery{display:grid;grid-template-columns:1fr;gap:16px;margin:16px 0}.gallery img{width:100%;border-radius:12px;border:1px solid var(--border);box-shadow:var(--shadow-sm)}
+  .summary-card{background:var(--gradient-1);border-radius:var(--radius);padding:32px;box-shadow:var(--shadow-lg)}.summary-card h3{color:#fff;font-size:1.3rem;margin-bottom:18px}.summary-card ul{list-style:none}.summary-card li{color:#fff;padding:7px 0 7px 28px;position:relative;border-bottom:1px solid rgba(255,255,255,.12)}.summary-card li::before{content:"✦";position:absolute;left:4px;color:#fbbf24}.summary-card strong{color:#fef08a}footer{text-align:center;padding:48px 2rem;color:var(--text-light);border-top:1px solid var(--border);background:var(--card-bg)}
+  .cta-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;position:relative}.cta-btn{padding:12px 26px;border-radius:12px;font-weight:600;font-size:.92rem;text-decoration:none;transition:.25s;display:inline-flex;align-items:center;gap:8px}.cta-btn.primary{background:var(--gradient-1);color:#fff}.cta-btn.primary:hover{transform:translateY(-2px);box-shadow:var(--shadow-md)}.cta-btn.ghost{background:var(--card-bg);color:var(--text);border:1px solid var(--border)}.cta-btn.ghost:hover{border-color:var(--primary);color:var(--primary)}
+  @media(max-width:768px){.navbar{padding:0 1rem}.logo{font-size:1rem}.hero{padding:100px 1rem 30px}.hero h1{font-size:1.9rem}.hero-stats{gap:20px}.toc-container,.content{padding-left:1rem;padding-right:1rem}.toc,.card{padding:20px}.comparison-grid,.three-grid{grid-template-columns:1fr}.section-header{align-items:flex-start}}
+</style>
+</head>
+<body>
+  <nav class="navbar"><div class="nav-content"><div class="logo"><span class="logo-icon">SS</span> Superstore Dashboard</div><div class="nav-controls"><button class="progress-btn" onclick="scrollToTop()" title="Go to top">↑</button><button class="theme-toggle" onclick="toggleTheme()" title="Toggle theme" id="themeToggle">🌙</button></div></div></nav>
+  <div class="progress-bar" id="progressBar"></div>
+
+  <header class="hero">
+    <div class="hero-badge">📊 Power BI Project • Retail Sales Analytics</div>
+    <h1>Superstore Sales <span>Dashboard</span></h1>
+    <p class="hero-subtitle">An interactive Power BI report that turns ~9,994 raw Superstore orders into a clean, filterable view of sales, profit, quantity and discount performance across regions, categories and cities.</p>
+    <div class="hero-stats">
+      <div><div class="stat-number">₹501K</div><div class="stat-label">Total Sales</div></div>
+      <div><div class="stat-number">₹39.7K</div><div class="stat-label">Total Profit</div></div>
+      <div><div class="stat-number">9K</div><div class="stat-label">Units Sold</div></div>
+      <div><div class="stat-number">24%</div><div class="stat-label">Avg. Discount</div></div>
+    </div>
+    <div class="cta-row">
+      <a href="#video" class="cta-btn primary">▶ Watch Demo</a>
+      <a href="#gallery" class="cta-btn ghost">🖼 View Dashboard</a>
+    </div>
+    <div class="hero-image-wrap" style="margin-top:36px">
+      <img src="dashboard-preview.png" alt="Superstore Sales Dashboard in Power BI">
+    </div>
+  </header>
+
+  <div class="toc-container"><div class="toc"><h3>📚 Contents</h3><div class="toc-grid">
+    <a href="#overview" class="toc-item"><span class="toc-num">1</span>Overview</a>
+    <a href="#video" class="toc-item"><span class="toc-num">2</span>Demo Video</a>
+    <a href="#features" class="toc-item"><span class="toc-num">3</span>Features</a>
+    <a href="#gallery" class="toc-item"><span class="toc-num">4</span>Dashboard View</a>
+    <a href="#dataset" class="toc-item"><span class="toc-num">5</span>Dataset</a>
+    <a href="#howto" class="toc-item"><span class="toc-num">6</span>How to Use</a>
+    <a href="#insights" class="toc-item"><span class="toc-num">7</span>Insights</a>
+    <a href="#summary" class="toc-item"><span class="toc-num">8</span>Summary</a>
+  </div></div></div>
+
+  <main class="content">
+
+    <section id="overview" class="section fade-in">
+      <div class="section-header"><div class="section-icon">🚀</div><h2><small>Section 01</small>Project Overview</h2></div>
+      <div class="card">
+        <h3>📌 What This Dashboard Does</h3>
+        <p>This report was built in <strong>Power BI Desktop</strong> on top of the classic <strong>Sample Superstore</strong> dataset. It answers the core questions any retail sales team asks: which category sells best, which region is most profitable, where our top cities are, and how discounting is affecting margins.</p>
+        <p>Everything on the page is cross-filterable — click any bar, slice, or map point and the rest of the dashboard updates instantly.</p>
+        <div class="info-box note"><strong>Why It Matters</strong>A single glance at the KPI cards, category breakdown, and regional map gives decision-makers a real-time pulse on sales health without digging through spreadsheets.</div>
+        <span class="tag purple">Power BI</span><span class="tag green">Retail Analytics</span><span class="tag orange">Interactive Filters</span>
+      </div>
+    </section>
+
+    <section id="video" class="section fade-in">
+      <div class="section-header"><div class="section-icon">🎥</div><h2><small>Section 02</small>Demo Video</h2></div>
+      <a href="https://drive.google.com/file/d/1mDEQPItmjHIlzOBy9iRwBg-FDYga-FLe/view?usp=sharing" target="_blank" style="text-decoration:none">
+        <div class="video-card">
+          <img src="dashboard-preview.png" alt="Dashboard demo video thumbnail">
+          <div class="video-play"></div>
+          <div class="video-caption">▶ Watch the full dashboard walkthrough</div>
+        </div>
+      </a>
+      <div class="info-box tip"><strong>Add your own recording</strong>Replace <code>https://drive.google.com/file/d/1mDEQPItmjHIlzOBy9iRwBg-FDYga-FLe/view?usp=sharing</code> with your real link once you record a short screen-capture (Loom, OBS, or Power BI's "Export to Video" in the Service). The thumbnail image above is your dashboard screenshot — swap it for a video-frame grab if you'd like a closer preview.</div>
+    </section>
+
+    <section id="features" class="section fade-in">
+      <div class="section-header"><div class="section-icon">✨</div><h2><small>Section 03</small>Dashboard Features</h2></div>
+      <div class="table-wrapper"><table><thead><tr><th>Visual</th><th>Description</th></tr></thead><tbody>
+        <tr><td>KPI Cards</td><td>Sum of Sales, Sum of Profit, Sum of Quantity, Average Discount</td></tr>
+        <tr><td>Sales by Category</td><td>Horizontal bar chart — Furniture, Office Supplies, Technology</td></tr>
+        <tr><td>Profit by Region</td><td>Column chart of profit contribution per region</td></tr>
+        <tr><td>Country Map</td><td>Geographic distribution of orders</td></tr>
+        <tr><td>Sales vs. Profit Donut</td><td>Composition breakdown of key measures</td></tr>
+        <tr><td>Sales by City</td><td>Scatter plot highlighting top-performing cities</td></tr>
+        <tr><td>Slicers</td><td>Filter everything by Region and Category</td></tr>
+      </tbody></table></div>
+      <div class="comparison-grid">
+        <div class="comparison-card"><h4>🎛️ Fully Interactive</h4><p>Every visual cross-filters the rest of the page on click.</p></div>
+        <div class="comparison-card"><h4>🌍 Geo-Enabled</h4><p>Bing-powered map plots orders by country/city.</p></div>
+      </div>
+    </section>
+
+    <section id="gallery" class="section fade-in">
+      <div class="section-header"><div class="section-icon">🖼️</div><h2><small>Section 04</small>Dashboard View</h2></div>
+      <div class="example-card">
+        <div class="example-header">📈 Full Dashboard Screenshot</div>
+        <div class="example-body">
+          <p>Dark-themed single-page report with region/category slicers on the left and six core visuals covering sales, profit, quantity, discount, geography, and city-level performance.</p>
+          <img src="dashboard-preview.png" alt="Superstore Sales Dashboard full view">
+        </div>
+      </div>
+    </section>
+
+    <section id="dataset" class="section fade-in">
+      <div class="section-header"><div class="section-icon">📁</div><h2><small>Section 05</small>Dataset</h2></div>
+      <div class="card">
+        <p>The dataset (<code>Sample_-_Superstore.csv</code>) contains <strong>~9,994 order-level records</strong> for a US-based superstore retailer.</p>
+      </div>
+      <div class="table-wrapper"><table><thead><tr><th>Column</th><th>Description</th></tr></thead><tbody>
+        <tr><td>Order ID / Date / Ship Date</td><td>Order tracking info</td></tr>
+        <tr><td>Customer Name / Segment</td><td>Customer details</td></tr>
+        <tr><td>Region / State / City / Country</td><td>Geography</td></tr>
+        <tr><td>Category / Sub-Category / Product Name</td><td>Product hierarchy</td></tr>
+        <tr><td>Sales / Quantity / Discount / Profit</td><td>Core metrics</td></tr>
+      </tbody></table></div>
+    </section>
+
+    <section id="howto" class="section fade-in">
+      <div class="section-header"><div class="section-icon">🪜</div><h2><small>Section 06</small>How to Use</h2></div>
+      <div class="card"><div class="steps">
+        <div class="step"><div class="step-dot">1</div><h4>Download the files</h4><p>Grab <code>Superstore_Sales.pbix</code> and <code>Sample_-_Superstore.csv</code>.</p></div>
+        <div class="step"><div class="step-dot">2</div><h4>Open in Power BI Desktop</h4><p>Free download from Microsoft — open the .pbix file directly.</p></div>
+        <div class="step"><div class="step-dot">3</div><h4>Fix the data source path</h4><p>If prompted, point it to the CSV's location on your machine.</p></div>
+        <div class="step"><div class="step-dot">4</div><h4>Filter with slicers</h4><p>Use the Region and Category panels on the left to drill in.</p></div>
+        <div class="step"><div class="step-dot">5</div><h4>Explore</h4><p>Hover for tooltips, click a chart to cross-filter the whole page.</p></div>
+      </div></div>
+    </section>
+
+    <section id="insights" class="section fade-in">
+      <div class="section-header"><div class="section-icon">📈</div><h2><small>Section 07</small>Key Insights</h2></div>
+      <div class="card">
+        <ul>
+          <li>Sales are fairly balanced across <strong>Technology, Office Supplies, and Furniture</strong> — each contributing close to a third of total sales.</li>
+          <li>The <strong>Central region</strong> stands out clearly in the Profit by Region view.</li>
+          <li>A small number of <strong>cities</strong> generate a disproportionately large share of total sales, visible as outliers in the scatter plot.</li>
+          <li>Average discount sits around <strong>24%</strong> — worth cross-checking against the profit trend to spot margin risk.</li>
+        </ul>
+      </div>
+      <div class="info-box warning"><strong>Next Step</strong>Add a discount-vs-profit scatter or trend line to quantify exactly where high discounting starts eroding margin.</div>
+    </section>
+
+    <section id="summary" class="section fade-in"><div class="summary-card">
+      <h3>🏆 Project Summary</h3>
+      <ul>
+        <li><strong>Tool:</strong> Power BI Desktop, built on the Sample Superstore dataset.</li>
+        <li><strong>Scope:</strong> Sales, profit, quantity and discount across region, category and city.</li>
+        <li><strong>Interactivity:</strong> Region/Category slicers with full cross-filtering.</li>
+        <li><strong>Files:</strong> <code>Superstore_Sales.pbix</code>, <code>Sample_-_Superstore.csv</code>, this showcase page.</li>
+        <li><strong>Best for:</strong> Portfolio piece, retail analytics demo, or a starting template for your own store data.</li>
+      </ul>
+    </div></section>
+
+  </main>
+
+  <footer><p><strong>Superstore Sales Dashboard</strong> • Power BI Portfolio Project</p><p>Built with ❤️ from raw retail data to an interactive story.</p></footer>
+
+  <script>
+    function toggleTheme(){const dark=document.body.getAttribute('data-theme')==='dark';document.body.setAttribute('data-theme',dark?'light':'dark');document.getElementById('themeToggle').textContent=dark?'🌙':'☀️';localStorage.setItem('superstore-theme',dark?'light':'dark')}
+    function scrollToTop(){window.scrollTo({top:0,behavior:'smooth'})}
+    window.addEventListener('scroll',()=>{const max=document.documentElement.scrollHeight-innerHeight;document.getElementById('progressBar').style.width=(max?scrollY/max*100:0)+'%'});
+    const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')}),{threshold:.08});document.querySelectorAll('.fade-in').forEach(el=>observer.observe(el));
+    const saved=localStorage.getItem('superstore-theme');if(saved){document.body.setAttribute('data-theme',saved);document.getElementById('themeToggle').textContent=saved==='dark'?'☀️':'🌙'}
+  </script>
+</body>
+</html>
