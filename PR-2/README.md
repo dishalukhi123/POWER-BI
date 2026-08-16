@@ -10,8 +10,7 @@ An interactive **Healthcare Analytics Dashboard** created in Microsoft Power BI 
 
 Watch the dashboard walkthrough on Google Drive:
 
-🎬 ▶️ https://drive.google.com/file/d/1Os7BYdRf4PCRyqKaL08wyFZm6sAtCK-O/view?usp=sharing
-Note: Make sure your Google Drive video sharing setting is "Anyone with the link can view" so visitors can access it without requesting permission.
+🎬 https://drive.google.com/file/d/1Os7BYdRf4PCRyqKaL08wyFZm6sAtCK-O/view?usp=sharing
 ---
 
 ### 🏠 Healthcare Dashboard — Overview
