@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Brazilian E-Commerce (Olist) — Power BI Dashboard | PR 3</title>
+<style>
+  :root{
+    --red:#CC0000;
+    --dark:#1a1a2e;
+    --navy:#0b1030;
+    --grey:#6B7280;
+    --bg:#F5F5F5;
+    --card:#ffffff;
+    --border:#e5e5e5;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    font-family:'Segoe UI', Arial, sans-serif;
+    background:var(--bg);
+    color:#222;
+    line-height:1.6;
+  }
+  header.hero{
+    background:linear-gradient(135deg,var(--navy),#1a2456);
+    color:#fff;
+    padding:48px 24px 40px;
+    text-align:center;
+  }
+  header.hero .badge{
+    display:inline-block;
+    background:var(--red);
+    padding:4px 14px;
+    border-radius:20px;
+    font-size:12px;
+    letter-spacing:1px;
+    text-transform:uppercase;
+    margin-bottom:16px;
+  }
+  header.hero h1{
+    margin:0 0 8px;
+    font-size:2.2em;
+  }
+  header.hero p{
+    color:#c9cce0;
+    margin:0;
+    font-size:1.05em;
+  }
+  .container{
+    max-width:1000px;
+    margin:0 auto;
+    padding:32px 24px 80px;
+  }
+  section{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:10px;
+    padding:28px 32px;
+    margin-bottom:24px;
+    box-shadow:0 1px 3px rgba(0,0,0,0.04);
+  }
+  h2{
+    color:var(--red);
+    border-bottom:3px solid var(--red);
+    padding-bottom:8px;
+    margin-top:0;
+    font-size:1.4em;
+  }
+  h3{
+    color:var(--navy);
+    margin-top:24px;
+    font-size:1.15em;
+  }
+  table{
+    width:100%;
+    border-collapse:collapse;
+    margin:16px 0;
+    font-size:0.92em;
+  }
+  th, td{
+    border:1px solid var(--border);
+    padding:9px 12px;
+    text-align:left;
+    vertical-align:top;
+  }
+  th{
+    background:var(--red);
+    color:#fff;
+    font-weight:600;
+  }
+  tr:nth-child(even){background:#fafafa;}
+  code{
+    background:#f0f0f2;
+    padding:2px 6px;
+    border-radius:4px;
+    font-family:'Consolas', monospace;
+    font-size:0.9em;
+    color:#c0392b;
+  }
+  pre{
+    background:var(--navy);
+    color:#e0e0f0;
+    padding:16px;
+    border-radius:8px;
+    overflow-x:auto;
+    font-size:0.85em;
+  }
+  .kpi-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(180px,1fr));
+    gap:14px;
+    margin:20px 0;
+  }
+  .kpi{
+    background:linear-gradient(135deg,#fff,#fff5f5);
+    border:1px solid #f0d0d0;
+    border-left:5px solid var(--red);
+    border-radius:8px;
+    padding:16px 18px;
+  }
+  .kpi .label{font-size:0.8em; color:var(--grey); text-transform:uppercase; letter-spacing:.5px;}
+  .kpi .value{font-size:1.6em; font-weight:700; color:var(--navy);}
+  ul{padding-left:22px;}
+  li{margin-bottom:6px;}
+  .checklist li{list-style:none; margin-bottom:5px;}
+  .checklist li::before{content:"✅ "; color:#2e8b57;}
+  .marks-total{
+    font-weight:700;
+    background:#fff3f3 !important;
+  }
+  footer{
+    text-align:center;
+    padding:24px;
+    color:var(--grey);
+    font-size:0.9em;
+  }
+  .pill{
+    display:inline-block;
+    background:#eef1ff;
+    color:#3949ab;
+    border-radius:6px;
+    padding:2px 8px;
+    font-size:0.85em;
+    margin-right:4px;
+  }
+  .video-box{
+    background:#fff8e1;
+    border:1px dashed #e0b400;
+    border-radius:8px;
+    padding:14px 18px;
+    margin-top:10px;
+    font-style:italic;
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="badge">Power BI · Practical Report 3</div>
+  <h1>🛍️ Brazilian E-Commerce (Olist) Dashboard</h1>
+  <p>Red & White Skill Education — "Shaping Skills for Scaling Higher"</p>
+</header>
+
+<div class="container">
+
+  <section>
+    <h2>📊 Project Overview</h2>
+    <p>This project is an interactive Power BI dashboard built on the <strong>Brazilian E-Commerce Public Dataset by Olist</strong> (Kaggle). It analyzes e-commerce orders, products, customers, sellers, payments, and reviews to identify sales performance, order trends, product-category revenue, and customer satisfaction.</p>
+    <table>
+      <tr><th>Field</th><th>Detail</th></tr>
+      <tr><td>Institute</td><td>Red & White Skill Education</td></tr>
+      <tr><td>Subject</td><td>Power BI</td></tr>
+      <tr><td>Project</td><td>Practical Report 3 (PR 3)</td></tr>
+      <tr><td>Total Marks</td><td>10</td></tr>
+      <tr><td>Dataset</td><td>Brazilian E-Commerce Public Dataset by Olist (Kaggle)</td></tr>
+      <tr><td>Kaggle URL</td><td><a href="https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce" target="_blank">kaggle.com/datasets/olistbr/brazilian-ecommerce</a></td></tr>
+    </table>
+
+    <h3>Key Features</h3>
+    <ul>
+      <li>Sales & Revenue Analysis</li>
+      <li>Product Category Performance</li>
+      <li>Monthly Order Trends</li>
+      <li>Customer & Seller Analysis</li>
+      <li>Interactive Filters (Year, Order Status, Product Category)</li>
+      <li>Date Hierarchy Drill-Down</li>
+    </ul>
+
+    <h3>Headline KPIs</h3>
+    <div class="kpi-grid">
+      <div class="kpi"><div class="label">Total Orders</div><div class="value">99.441K</div></div>
+      <div class="kpi"><div class="label">Total Revenue (R$)</div><div class="value">13.59M</div></div>
+      <div class="kpi"><div class="label">Avg Order Value (R$)</div><div class="value">$137.75</div></div>
+      <div class="kpi"><div class="label">Avg Customer Rating</div><div class="value">4.09 / 5</div></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>🗂️ Dataset Structure — 9 CSV Files</h2>
+    <p>9 CSV files connected by primary/foreign keys — 54 columns total across all files. Data is real commercial data, anonymised (customer names replaced with Game of Thrones house names; all IDs are 32-character UUID hash strings).</p>
+    <table>
+      <tr><th>Raw File</th><th>Renamed In Model</th><th>Type</th><th>Rows</th><th>Key Columns</th></tr>
+      <tr><td>olist_orders_dataset.csv</td><td>DimOrders</td><td>Core Orders</td><td>99,441</td><td>order_id (PK), customer_id (FK), order_status, timestamps</td></tr>
+      <tr><td>olist_order_items_dataset.csv</td><td>FactOrderItems</td><td>Fact Table</td><td>112,650</td><td>order_id, order_item_id, product_id, seller_id, price, freight_value</td></tr>
+      <tr><td>olist_customers_dataset.csv</td><td>DimCustomers</td><td>Dim Customers</td><td>99,441</td><td>customer_id (PK), customer_unique_id, city, state</td></tr>
+      <tr><td>olist_products_dataset.csv</td><td>DimProducts</td><td>Dim Products</td><td>32,951</td><td>product_id (PK), category, dimensions, weight</td></tr>
+      <tr><td>olist_sellers_dataset.csv</td><td>DimSellers</td><td>Dim Sellers</td><td>3,095</td><td>seller_id (PK), seller_city, seller_state</td></tr>
+      <tr><td>olist_order_payments_dataset.csv</td><td>FactPayments</td><td>Fact Payments</td><td>103,886</td><td>order_id, payment_type, payment_installments, payment_value</td></tr>
+      <tr><td>olist_order_reviews_dataset.csv</td><td>FactReviews</td><td>Fact Reviews</td><td>99,224</td><td>review_id (PK), order_id (FK), review_score (1–5)</td></tr>
+      <tr><td>olist_geolocation_dataset.csv</td><td>DimGeolocation</td><td>Geo Lookup</td><td>1,000,163</td><td>zip_code_prefix, lat, lng, city, state</td></tr>
+      <tr><td>product_category_name_translation.csv</td><td>merged into DimProducts</td><td>Category Lookup</td><td>71</td><td>product_category_name (FK) → product_category_name_english</td></tr>
+    </table>
+    <p><em>Note:</em> the translation file is left-outer-joined into <code>DimProducts</code> on <code>product_category_name</code>, adding a <code>Product_Category_EN</code> column, then disabled from load (CategoryTranslation).</p>
+  </section>
+
+  <section>
+    <h2>⭐ Star Schema Design</h2>
+    <p><strong>Fact Table — FactOrderItems</strong> sits at the centre, containing measurable numeric facts (<code>price</code>, <code>freight_value</code>) and foreign keys (<code>order_id</code>, <code>product_id</code>, <code>seller_id</code>). One row per item sold, not per order.</p>
+    <p><strong>Dimension Tables:</strong> DimOrders · DimCustomers · DimProducts · DimSellers · DimDate</p>
+    <p><strong>Secondary Fact Tables</strong> (Fact Constellation / Galaxy Schema, sharing DimOrders): FactPayments · FactReviews</p>
+    <p><strong>DimGeolocation</strong> is used purely as a lookup table for geographic enrichment.</p>
+
+    <h3>Active Relationships (7) + 1 Inactive</h3>
+    <table>
+      <tr><th>#</th><th>From → To</th><th>Cardinality</th><th>Cross-Filter</th><th>Status</th></tr>
+      <tr><td>1</td><td>FactOrderItems[order_id] → DimOrders[order_id]</td><td>*:1</td><td>Single</td><td>✅ Active</td></tr>
+      <tr><td>2</td><td>FactOrderItems[product_id] → DimProducts[product_id]</td><td>*:1</td><td>Single</td><td>✅ Active</td></tr>
+      <tr><td>3</td><td>FactOrderItems[seller_id] → DimSellers[seller_id]</td><td>*:1</td><td>Single</td><td>✅ Active</td></tr>
+      <tr><td>4</td><td>DimOrders[customer_id] → DimCustomers[customer_id]</td><td>*:1</td><td>Single</td><td>✅ Active (snowflake)</td></tr>
+      <tr><td>5</td><td>DimDate[Date] → DimOrders[order_purchase_timestamp]</td><td>1:*</td><td>Single</td><td>✅ Active — primary</td></tr>
+      <tr><td>6</td><td>FactPayments[order_id] → DimOrders[order_id]</td><td>*:1</td><td>Single</td><td>✅ Active</td></tr>
+      <tr><td>7</td><td>FactReviews[order_id] → DimOrders[order_id]</td><td>*:1</td><td>Single</td><td>✅ Active</td></tr>
+      <tr><td>8</td><td>DimDate[Date] → DimOrders[order_delivered_customer_date]</td><td>—</td><td>Single</td><td>⏸️ Inactive (needs USERELATIONSHIP)</td></tr>
+    </table>
+
+    <h3>Star vs Snowflake</h3>
+    <p>FactOrderItems connects directly to DimOrders, DimProducts, DimSellers, DimDate — a <strong>Star Schema</strong>. DimOrders → DimCustomers forms a two-level chain, a <strong>Snowflake extension</strong>, since each order has one customer and customers are stored separately. FactPayments and FactReviews both connecting to DimOrders forms a <strong>Fact Constellation (Galaxy Schema)</strong>.</p>
+
+    <h3>Bi-Directional Filter Risk</h3>
+    <p>The DimOrders ↔ DimCustomers relationship was temporarily set to <strong>Both</strong> cross-filter direction to observe new filter paths in both directions, then reverted to <strong>Single</strong> — bi-directional filters across multiple fact tables sharing dimensions can create ambiguous filter paths.</p>
+  </section>
+
+  <section>
+    <h2>📅 DimDate Calendar Table</h2>
+    <p>Power BI has no built-in date dimension, so a calendar table was built manually in Power Query (Home → New Source → Blank Query → Advanced Editor) spanning <code>2016-01-01</code> to <code>2018-12-31</code>.</p>
+    <p><strong>Columns (6):</strong> <span class="pill">Date</span><span class="pill">Year</span><span class="pill">Quarter</span><span class="pill">Month_Num</span><span class="pill">Month_Name</span><span class="pill">Weekday</span><span class="pill">Year_Quarter</span></p>
+    <ul>
+      <li>Marked as <strong>Date Table</strong> using the <code>Date</code> column</li>
+      <li><code>Month_Name</code> sorted by <code>Month_Num</code> so charts display Jan–Dec, not alphabetically</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>🌲 Hierarchies (4)</h2>
+    <table>
+      <tr><th>Hierarchy</th><th>Table</th><th>Levels</th><th>Enables</th></tr>
+      <tr><td>Date Hierarchy</td><td>DimDate</td><td>Year → Quarter → Month_Name</td><td>Drill-down in all visuals</td></tr>
+      <tr><td>Product Hierarchy</td><td>DimProducts</td><td>Product_Category_EN → product_id</td><td>Category → Product drill-down</td></tr>
+      <tr><td>Seller Location</td><td>DimSellers</td><td>seller_state → seller_city</td><td>Seller geographic drill-down</td></tr>
+      <tr><td>Customer Location</td><td>DimCustomers</td><td>customer_state → customer_city</td><td>Customer geographic drill-down</td></tr>
+    </table>
+  </section>
+
+  <section>
+    <h2>📈 Report Pages (3)</h2>
+
+    <h3>Page 1 — Sales Overview</h3>
+    <ul>
+      <li>KPI cards: Total Orders, Total Revenue, Avg Order Value, Avg Customer Rating</li>
+      <li>Top 10 Product Categories by Revenue (clustered bar chart — <code>beleza_saude</code> leads)</li>
+      <li>Monthly Order Volume 2016–2018 (line chart with drill-down)</li>
+      <li>Orders by Status (bar chart — <code>delivered</code> dominates)</li>
+      <li>Slicers: Year, Order Status, Product Category</li>
+    </ul>
+
+    <h3>Page 2 — Geographic Analysis (Customers & Sellers)</h3>
+    <ul>
+      <li>Order Distribution by Brazilian State (map visual)</li>
+      <li>Revenue by Seller State & Year (SP dominates at ₹8.8M)</li>
+      <li>Top 10 Sellers by Revenue (R$)</li>
+      <li>Orders by Customer State</li>
+    </ul>
+
+    <h3>Page 3 — Payments & Reviews (Customer Satisfaction)</h3>
+    <ul>
+      <li>Payment Value by Type and Year (matrix, conditional formatting)</li>
+      <li>Average Customer Rating card: <strong>4.09 / 5</strong></li>
+      <li>Average Review Score by Product Category (bar chart)</li>
+      <li>Payment Value by Payment Type (donut — Credit Card dominant, then Boleto)</li>
+    </ul>
+
+    <table>
+      <tr><th>Payment Type</th><th>2016</th><th>2017</th><th>2018</th><th>Total</th></tr>
+      <tr><td>Boleto</td><td>63</td><td>9,508</td><td>10,213</td><td>19,784</td></tr>
+      <tr><td>Credit Card</td><td>258</td><td>34,568</td><td>41,969</td><td>76,795</td></tr>
+      <tr><td>Debit Card</td><td>2</td><td>422</td><td>1,105</td><td>1,529</td></tr>
+      <tr><td>Not Defined</td><td>—</td><td>—</td><td>3</td><td>3</td></tr>
+      <tr><td>Voucher</td><td>23</td><td>3,027</td><td>2,725</td><td>5,775</td></tr>
+      <tr class="marks-total"><td>Total</td><td>346</td><td>47,525</td><td>56,015</td><td>103,886</td></tr>
+    </table>
+  </section>
+
+  <section>
+    <h2>🎛️ Slicers, Filters & Interactivity</h2>
+    <ul>
+      <li><strong>Year</strong> slicer (tiles: 2016 / 2017 / 2018)</li>
+      <li><strong>Order Status</strong> slicer (delivered, shipped, canceled, invoiced, processing, unavailable, approved, created)</li>
+      <li><strong>Product Category</strong> slicer (Product_Category_EN)</li>
+      <li>Drill-down demonstrated on the Monthly Order Volume line chart via the Date Hierarchy</li>
+      <li>Filter flow demonstrated: selecting a product category filters Line Chart, Matrix and KPI cards via <code>FactOrderItems → DimProducts</code></li>
+      <li>Report-level filter: <code>order_status = delivered</code> applied to all pages</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>🛠️ Tools & Techniques Used</h2>
+    <ul>
+      <li>Power BI Desktop — Get Data, Power Query Editor, Model View, Report View</li>
+      <li>Power Query M — custom DimDate calendar table, category translation merge</li>
+      <li>DAX — explicit measure (AVERAGEX), implicit aggregations (Sum, Count Distinct, Average)</li>
+      <li>Data Modelling — Star Schema + Snowflake extension + Fact Constellation</li>
+      <li>Data Categories — Geography (City / State-or-Province)</li>
+      <li>Hierarchies — Date, Product, and two Geo hierarchies</li>
+      <li>Built-in Theme applied consistently across all 3 pages</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>🎥 Video Walkthrough</h2>
+    <div class="video-box">📹 [Paste your video link here — Google Drive (Anyone with link can view) or YouTube (Unlisted)]</div>
+    <p>5–10 minutes, face (webcam) + Power BI screen simultaneously, covering: Fact vs Dimension tables, why DimDate is needed, Star vs Snowflake schema, filter flow, Active vs Inactive relationships, bi-directional filter risk, and Date Hierarchy drill-down.</p>
+  </section>
+
+  <section>
+    <h2>✅ Submission Checklist</h2>
+    <ul class="checklist">
+      <li>.pbix file saved with all 12 tasks completed</li>
+      <li>Dataset downloaded from Kaggle (olistbr/brazilian-ecommerce)</li>
+      <li>All 9 CSV files loaded into Power BI Desktop</li>
+      <li>product_category_name_translation merged into DimProducts as Product_Category_EN</li>
+      <li>All 9 tables renamed with clean names</li>
+      <li>DimDate calendar table built via Power Query M (7 columns)</li>
+      <li>DimDate marked as Date Table</li>
+      <li>Star schema conceptual diagram drawn & screenshotted</li>
+      <li>Fact Table & Dimension Tables identified and documented</li>
+      <li>All 7 active relationships + 1 inactive created with correct cardinality</li>
+      <li>Bi-directional filter risk demonstrated and reset to Single</li>
+      <li>Model View layout organised as star schema</li>
+      <li>Technical fields hidden from Report View</li>
+      <li>Currency format applied to price, freight_value, payment_value</li>
+      <li>Geography Data Categories set for city/state fields</li>
+      <li>Month_Name sorted by Month_Num</li>
+      <li>4 hierarchies created (Date, Product, Seller Location, Customer Location)</li>
+      <li>3 report pages built: Sales Overview | Geographic Analysis | Payments & Reviews</li>
+      <li>Drill-down demonstrated on Line Chart</li>
+      <li>Filter flow demonstrated in video</li>
+      <li>Report-level filter applied (delivered only)</li>
+      <li>Model validation completed — all relationships verified</li>
+      <li>Theme applied consistently across pages</li>
+      <li>Model description text box added on Page 1</li>
+      <li>Video recorded (face + screen, 5–10 min, MP4/MOV)</li>
+      <li>GitHub repository public with all files & screenshots</li>
+      <li>README.md complete with Kaggle URL, star schema diagram, relationships, video link</li>
+      <li>3+ meaningful GitHub commits</li>
+      <li>Video link pasted in README.md</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>🏆 Marking Scheme (10 Marks Total)</h2>
+    <table>
+      <tr><th>Component</th><th>Marks</th><th>Weight</th></tr>
+      <tr><td>A. Technical Completion of Power BI Project</td><td>5</td><td>50%</td></tr>
+      <tr><td>B. Recorded Video Explanation (Face + Screen)</td><td>3</td><td>30%</td></tr>
+      <tr><td>C. GitHub Repository with README.md</td><td>2</td><td>20%</td></tr>
+      <tr class="marks-total"><td>Total</td><td>10</td><td>100%</td></tr>
+    </table>
+
+    <h3>Component A Breakdown</h3>
+    <table>
+      <tr><th>Criterion</th><th>Marks</th><th>Description</th></tr>
+      <tr><td>A1</td><td>1.0</td><td>All 9 CSVs loaded & renamed; DimDate built (7 cols); category translation merged</td></tr>
+      <tr><td>A2</td><td>1.5</td><td>7 active + 1 inactive relationships, correct cardinality & cross-filter, validated</td></tr>
+      <tr><td>A3</td><td>1.0</td><td>Star schema layout, data formats, geography categories, Month_Name sort, Date Table marked</td></tr>
+      <tr><td>A4</td><td>0.5</td><td>4 hierarchies in correct drill-down order</td></tr>
+      <tr><td>A5</td><td>1.0</td><td>3 report pages, correct visuals, slicers, filters, drill-down, theme, alignment</td></tr>
+    </table>
+  </section>
+
+  <section>
+    <h2>📖 About the Dataset</h2>
+    <p>The <strong>Brazilian E-Commerce Public Dataset by Olist</strong> contains real commercial order data from a Brazilian marketplace between 2016 and 2018 — orders, order items, products, customers, sellers, payments, reviews, and geolocation, connected via primary/foreign keys in a fully normalised (3NF) relational structure.</p>
+    <p><strong>Author:</strong> Olist (olistbr) on Kaggle<br>
+    <strong>Source:</strong> <a href="https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce" target="_blank">kaggle.com/datasets/olistbr/brazilian-ecommerce</a></p>
+  </section>
+
+</div>
+
+<footer>
+  "Shaping Skills for Scaling Higher" — Red & White Skill Education
+</footer>
+
+</body>
+</html>
