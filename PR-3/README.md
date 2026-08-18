@@ -163,7 +163,7 @@ Header "Olist E-Commerce Analytics — Sales Overview" (bold, 18 pt, Red `#CC000
 | Orders by Status | Horizontal bar; `delivered` dominates (~100K+ orders) |
 | 3 Slicers | Year (2016 / 2017 / 2018 tiles), Order Status (dropdown), Product Category (dropdown) |
 
-![Sales Overview Dashboard](screenshots/01_sales_overview.png)
+![Sales Overview Dashboard](images/01_sales_overview.png)
 
 ### Page 2 — Geographic Analysis (Customers & Sellers)
 Header "Geographic Distribution — Customers & Sellers".
@@ -175,7 +175,7 @@ Header "Geographic Distribution — Customers & Sellers".
 | Top 10 Sellers by Revenue (R$) | Horizontal bar chart of top seller IDs |
 | Orders by Customer State | Horizontal bar chart |
 
-![Geographic Analysis Dashboard](screenshots/02_geographic_analysis.png)
+![Geographic Analysis Dashboard](images/02_geographic_analysis.png)
 
 ### Page 3 — Payments & Reviews (Customer Satisfaction)
 Header "Payment Methods — Customer Satisfaction".
@@ -187,7 +187,7 @@ Header "Payment Methods — Customer Satisfaction".
 | Average Review Score by Product Category | Bar chart comparing average review scores across all categories |
 | Payment Value by Payment Type | Donut chart — Credit Card is the dominant method, followed by Boleto |
 
-![Payments and Reviews Dashboard](screenshots/03_payments_reviews.png)
+![Payments and Reviews Dashboard](images/03_payments_reviews.png)
 
 **Payments summary (from Payment Value matrix):**
 
