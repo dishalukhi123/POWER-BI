@@ -30,18 +30,6 @@ This project is an interactive Power BI dashboard built on the **Brazilian E-Com
 
 ---
 
-
-## 📸 Dashboard Preview
-
-🎥 Demo Video
-
-Watch the dashboard walkthrough on Google Drive:
-
-🎬 https://drive.google.com/file/d/1syJVo8a1fWotD86ZKHiYX0ylGaYHue98/view?usp=sharing
-
----
-
-
 ## 🖼️ Dashboard Preview
 
 | Sales Overview | Geographic Analysis | Payments & Reviews |
@@ -243,7 +231,7 @@ Header "Payment Methods — Customer Satisfaction".
 
 ## 🎥 Video Walkthrough
 
-> _[Paste your video link here — Google Drive (Anyone with link can view) or YouTube (Unlisted)]_
+> [_\[(https://drive.google.com/file/d/1syJVo8a1fWotD86ZKHiYX0ylGaYHue98/view?usp=sharing)\]_]
 
 The video (5–10 minutes) shows face (webcam) + Power BI screen simultaneously, explaining:
 - What a Fact Table vs Dimension Table is
