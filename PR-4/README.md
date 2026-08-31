@@ -165,3 +165,12 @@ HR_Dashboard/
 ```
 
 > **Note:** Keep the `images` folder in the same location as `README.md` so the screenshots display correctly on GitHub or another Markdown viewer.
+
+
+## 🎥 Project Demo Video
+
+Watch the complete **HR Analytics Power BI Dashboard** demonstration:
+
+👉 [Watch the Project Demo Video on Google Drive](https://drive.google.com/file/d/1u2aGZiodmNhKTPNaXJBm-3VXXh4309mo/view?usp=sharing)
+
+The video demonstrates the dashboard pages, navigation, KPIs, charts, filters, and HR insights.
